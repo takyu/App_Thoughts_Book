@@ -1,5 +1,11 @@
 import { createRouter, createWebHistory } from "vue-router";
-import Home from "../views/Home.vue";
+
+/**
+ * components
+ */
+import BookIndex from "@/pages/BookIndex";
+import BookSearch from "@/pages/BookSearch";
+import BookEdit from "@/pages/BookEdit";
 
 /**
  * test components
@@ -10,8 +16,18 @@ import LocalStorageTest from "@/components/test/LocalStorageTest.vue";
 const routes = [
   {
     path: "/",
-    name: "home",
-    component: Home,
+    name: "BookIndex",
+    component: BookIndex,
+  },
+  {
+    path: "/search",
+    name: "BookSearch",
+    component: BookSearch,
+  },
+  {
+    path: "/edit",
+    name: "BookEdit",
+    component: BookEdit,
   },
   {
     path: "/apitest",
@@ -22,6 +38,10 @@ const routes = [
     path: "/localstoragetest",
     name: "LocalStorageTest",
     component: LocalStorageTest,
+  },
+  {
+    path: "/:pathMatch(.*)*",
+    redirect: "/",
   },
 ];
 
