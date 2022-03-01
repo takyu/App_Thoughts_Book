@@ -1,9 +1,18 @@
 <template>
-  <div id="search-section">
-    <input type="text" name="" id="" v-model="keyword" />
-    <br />
-    <button @click="search(keyword)">検索する</button>
-  </div>
+  <v-container>
+    <h2>本を検索</h2>
+    <div class="my-5">
+      <v-text-field
+        label="keyword"
+        placeholder="Placeholder"
+        v-model="keyword"
+      ></v-text-field>
+      <br />
+      <v-btn :rounded="0" color="primary" @click="search(keyword)">
+        検索する
+      </v-btn>
+    </div>
+  </v-container>
 </template>
 
 <script>
@@ -63,7 +72,7 @@ export default {
         this.searchResults.push({
           title: title ?? "",
           image: img ? img.thumbnail : "",
-          description: description ? description.slice(0, 10) : "",
+          description: description ? description.slice(0, 40) : "",
         });
       }
     },

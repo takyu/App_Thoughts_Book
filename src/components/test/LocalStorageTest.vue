@@ -1,17 +1,21 @@
 <template>
-  <div>
+  <v-container>
     <h2>Books</h2>
-    <div v-for="(book, n) in books" :key="n">
-      <p>
-        <span class="book">{{ book }}</span>
-        <button @click="removeBook(n)">Remove</button>
-      </p>
+    <div v-for="(book, n) in books" :key="n" class="my-5">
+      <div>
+        <span class="me-5">{{ book }}</span>
+        <v-btn @click="removeBook(n)" rounded="lg" color="error">Remove</v-btn>
+      </div>
     </div>
-    <p>
-      <input v-model="newBook" />
-      <button @click="addBook">Add Book</button>
-    </p>
-  </div>
+    <div class="my-5">
+      <v-text-field
+        label="bookname"
+        placeholder="Placeholder"
+        v-model="newBook"
+      ></v-text-field>
+      <v-btn @click="addBook" rounded="lg" color="primary"> Add Book </v-btn>
+    </div>
+  </v-container>
 </template>
 
 <script>
