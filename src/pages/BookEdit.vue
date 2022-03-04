@@ -30,7 +30,7 @@
               </div>
               <v-card-actions>
                 <v-btn color="success" to="/">一覧に戻る</v-btn>
-                <v-btn color="info">保存する</v-btn>
+                <v-btn color="info" @click="updateBookInfo">保存する</v-btn>
               </v-card-actions>
             </v-col>
           </v-row>
@@ -59,6 +59,15 @@ export default {
       book: "",
       picked: ref(new Date()),
     };
+  },
+  methods: {
+    updateBookInfo() {
+      this.$emit("updateBookInfo", {
+        id: this.$route.params.id,
+        readDate: this.picked,
+        memo: this.book.memo,
+      });
+    },
   },
   beforeRouteEnter(to, from, next) {
     next((vm) => {

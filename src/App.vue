@@ -4,8 +4,10 @@
     <v-main>
       <v-container>
         <router-view
-        :books="books"
-        @add-book-list="addBook" />
+          :books="books"
+          @addBookList="addBook"
+          @updateBookInfo="updateBookInfo"
+        />
       </v-container>
     </v-main>
     <Footer />
@@ -49,12 +51,12 @@ export default {
         title: e.title,
         image: e.image,
         description: e.description,
-        readData: "",
+        readDate: "",
         memo: "",
       });
       this.saveBooks();
 
-      this.goToEditPage(this.books.at(-1).id)
+      this.goToEditPage(this.books.at(-1).id);
     },
     removeBook(n) {
       this.books.splice(n, 1);
@@ -63,9 +65,25 @@ export default {
     saveBooks() {
       localStorage.setItem(STORAGE_KEY, JSON.stringify(this.books));
     },
+    updateBookInfo(e) {
+      const updateInfo = {
+        id: e.id,
+        readDate: String(e.readDate),
+        memo: e.memo,
+        title: this.books[e.id].title,
+        image: this.books[e.id].image,
+        description: this.books[e.id].description,
+      };
+
+      // Object.assign(this.books, updateInfo); -> Proxyになる
+      this.books.splice(e.id, 1, updateInfo);
+
+      this.saveBooks();
+      this.$router.push("/");
+    },
     goToEditPage(id) {
-      this.$router.push(`/edit/${id}`)
-    }
-   },
+      this.$router.push(`/edit/${id}`);
+    },
+  },
 };
 </script>

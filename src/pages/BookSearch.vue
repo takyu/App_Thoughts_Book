@@ -110,7 +110,7 @@ export default {
       }
     },
     addBookList(index) {
-      this.$emit("add-book-list", this.searchResults[index]);
+      this.$emit("addBookList", this.searchResults[index]);
     },
   },
 };
