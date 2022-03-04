@@ -3,7 +3,9 @@
     <Header />
     <v-main>
       <v-container>
-        <router-view @add-book-list="addBook" />
+        <router-view
+        :books="books"
+        @add-book-list="addBook" />
       </v-container>
     </v-main>
     <Footer />
@@ -51,6 +53,8 @@ export default {
         memo: "",
       });
       this.saveBooks();
+
+      this.goToEditPage(this.books.at(-1).id)
     },
     removeBook(n) {
       this.books.splice(n, 1);
@@ -59,6 +63,9 @@ export default {
     saveBooks() {
       localStorage.setItem(STORAGE_KEY, JSON.stringify(this.books));
     },
-  },
+    goToEditPage(id) {
+      this.$router.push(`/edit/${id}`)
+    }
+   },
 };
 </script>
