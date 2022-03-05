@@ -1,7 +1,7 @@
 <template>
   <div>
     <v-row>
-      <v-col cols="6">
+      <v-col cols="12" class="my-3">
         <v-btn color="success" rounded="pill" size="large" to="/search"
           >本を検索する</v-btn
         >
@@ -15,17 +15,17 @@
               <v-img :src="book.image"></v-img>
             </v-col>
             <v-col col="8">
-              <v-card-title>{{ book.title }}</v-card-title>
-              <div>
+              <v-card-title class="mb-3">{{ book.title }}</v-card-title>
+              <div class="ms-4">
                 <span>読んだ日：</span>
-                {{ book.readDate }}
+                {{ displayDate(book.readDate) }}
               </div>
-              <div>
+              <div class="ms-4">
                 <span>感想：</span>
                 {{ book.memo }}
               </div>
               <v-spacer></v-spacer>
-              <v-card-actions>
+              <v-card-actions class="mt-5">
                 <v-btn
                   :to="{ name: 'BookEdit', params: { id: book.id } }"
                   variant="outlined"
@@ -48,6 +48,17 @@
 export default {
   props: {
     books: Array,
+  },
+  methods: {
+    formatDate(date) {
+      let y = date.getFullYear();
+      let m = ("00" + (date.getMonth() + 1)).slice(-2);
+      let d = ("00" + date.getDate()).slice(-2);
+      return y + "-" + m + "-" + d;
+    },
+    displayDate(picked) {
+      return this.formatDate(new Date(picked));
+    },
   },
 };
 </script>

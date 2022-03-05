@@ -13,7 +13,7 @@
               </v-card-title>
               <div class="my-2 ms-2">
                 <span>読んだ日：</span>
-                <datepicker v-model="picked" />
+                <datepicker v-model="date" />
               </div>
               <div>
                 <span class="ms-2">感想：</span>
@@ -57,16 +57,25 @@ export default {
   data() {
     return {
       book: "",
-      picked: ref(new Date()),
+      date: this.setReadDate(),
     };
   },
   methods: {
     updateBookInfo() {
       this.$emit("updateBookInfo", {
         id: this.$route.params.id,
-        readDate: this.picked,
+        readDate: this.date,
         memo: this.book.memo,
       });
+    },
+    setReadDate() {
+      const currentReadDate = this.books[this.$route.params.id].readDate;
+
+      if (currentReadDate) {
+        return new Date(currentReadDate);
+      } else {
+        return ref(new Date());
+      }
     },
   },
   beforeRouteEnter(to, from, next) {
