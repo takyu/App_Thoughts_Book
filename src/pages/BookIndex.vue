@@ -1,11 +1,22 @@
 <template>
   <div>
-    <v-row>
-      <v-col cols="12" class="my-3">
-        <v-btn color="success" rounded="pill" size="large" to="/search"
-          >本を検索する</v-btn
-        >
-      </v-col>
+    <v-row class="my-5">
+      <v-btn
+        class="me-5"
+        color="success"
+        rounded="pill"
+        size="large"
+        to="/search"
+        >本を検索する</v-btn
+      >
+      <v-btn
+        class="ms-5"
+        color="error"
+        rounded="pill"
+        size="large"
+        @click="deleteLocalStorage"
+        >本一覧を削除する</v-btn
+      >
     </v-row>
     <v-row class="my-5">
       <v-col cols="12" sm="6" v-for="book in books" :key="book.id">
@@ -58,6 +69,9 @@ export default {
     },
     displayDate(picked) {
       return this.formatDate(new Date(picked));
+    },
+    deleteLocalStorage() {
+      this.$emit("deleteLocalStorage");
     },
   },
 };

@@ -7,6 +7,7 @@
           :books="books"
           @addBookList="addBook"
           @updateBookInfo="updateBookInfo"
+          @deleteLocalStorage="deleteLocalStorage"
         />
       </v-container>
     </v-main>
@@ -83,6 +84,16 @@ export default {
     },
     goToEditPage(id) {
       this.$router.push(`/edit/${id}`);
+    },
+    deleteLocalStorage() {
+      const isDeleted = "本一覧を削除しますか？";
+
+      if (window.confirm(isDeleted)) {
+        localStorage.setItem(STORAGE_KEY, "");
+        localStorage.removeItem(STORAGE_KEY);
+        this.books = [];
+        window.location.reload();
+      }
     },
   },
 };

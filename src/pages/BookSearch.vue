@@ -104,7 +104,7 @@ export default {
         this.searchResults.push({
           title: title ?? "",
           image: img ? img.thumbnail : "",
-          description: description ? description.slice(0, 100) : "",
+          description: description ? description.slice(0, 500) : "",
           isShow: false,
         });
       }
