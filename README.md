@@ -1,5 +1,7 @@
 # app_thoughts_book
 
+[This site](https://takyu.github.io/App_Thoughts_Book/) is a web application that searches for books using GooglebookAPI and records the date read and impressions.
+
 ## Project setup
 ```
 yarn install
